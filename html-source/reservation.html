@@ -203,7 +203,7 @@
           //   'success',
           //   'My Text for the button'
           // );
-          attention.toast();
+          attention.error({ msg: 'Ooops' });
         });
 
       const elem = document.getElementById('reservation-dates');
@@ -228,16 +228,47 @@
       }
 
       function Prompt() {
-        let toast = function () {
-          console.log('clicked button and got toast');
+        let toast = function (c) {
+          const { msg = '', icon = 'success', position = 'top-end' } = c;
+          const Toast = Swal.mixin({
+            toast: true,
+            title: msg,
+            position,
+            icon,
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer);
+              toast.addEventListener('mouseleave', Swal.resumeTimer);
+            },
+          });
+
+          Toast.fire({});
         };
-        let success = function () {
-          console.log('clicked button and got success');
+        let success = function (c) {
+          const { msg = '', title = '', footer = '' } = c;
+          Swal.fire({
+            icon: 'success',
+            title,
+            text: msg,
+            footer,
+          });
+        };
+        let error = function (c) {
+          const { msg = '', title = '', footer = '' } = c;
+          Swal.fire({
+            icon: 'error',
+            title,
+            text: msg,
+            footer,
+          });
         };
 
         return {
           toast,
           success,
+          error,
         };
       }
     </script>
