@@ -92,36 +92,26 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1 class="mt-5">Search for Availability</h1>
-          <form action="reservation.html" method="GET">
-            <div class="mb-3">
-              <label for="start_date" class="form-label">Starting Date</label>
-              <input
-                type="date"
-                class="form-control"
-                id="start_date"
-                name="start_date"
-                aria-describedby="startDateHelp"
-              />
-              <div id="startDateHelp" class="form-text">
-                Enter your starting date in the form of YYYY-MM-DD.
-              </div>
+          <h1>Make reservatino</h1>
+          <form action="" method="POST" class="need-validation" novalidate>
+            <div class="form-group mt-5">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" class="form-control" required autocomplete="off">
             </div>
-            <div class="mb-3">
-              <label for="end_date" class="form-label">Ending Date</label>
-              <input
-                type="date"
-                class="form-control"
-                id="end_date"
-                name="end_date"
-                aria-describedby="endDateHelp"
-              />
-              <div id="endDateHelp" class="form-text">
-                Enter your ending date in the form of YYYY-MM-DD.
-              </div>
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" class="form-control" required autocomplete="off">
             </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" class="form-control" required autocomplete="off">
+            </div>
+            <hr>
+            <input type="submit" class="btn btn-primary" value="Make Reservation">
           </form>
         </div>
       </div>
