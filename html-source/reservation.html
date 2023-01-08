@@ -11,6 +11,15 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker-bs5.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/notie/dist/notie.min.css"
+    />
     <style>
       .my-footer {
         height: 5em;
@@ -22,6 +31,10 @@
       }
       .room-image {
         max-width: 50%;
+      }
+
+      .notie-container {
+        box-shadow: none;
       }
     </style>
   </head>
@@ -94,41 +107,51 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
           <h1 class="mt-5">Search for Availability</h1>
-          <form action="reservation.html" method="GET">
+          <form
+            action="reservation.html"
+            method="GET"
+            novalidate
+            class="needs-validation"
+          >
             <div class="row">
-
-              <div class="mb-3 col">
-                <label for="start_date" class="form-label">Starting Date</label>
-                <input
-                required
-                type="date"
-                class="form-control"
-                id="start_date"
-                name="start_date"
-                aria-describedby="startDateHelp"
-                />
-                <div id="startDateHelp" class="form-text">
-                  Enter your starting date in the form of YYYY-MM-DD.
-                </div>
-              </div>
-              <div class="mb-3 col">
-                <label for="end_date" class="form-label">Ending Date</label>
-                <input
-                required
-                type="date"
-                class="form-control"
-                id="end_date"
-                name="end_date"
-                aria-describedby="endDateHelp"
-                />
-                <div id="endDateHelp" class="form-text">
-                  Enter your ending date in the form of YYYY-MM-DD.
+              <div class="col">
+                <div class="row" id="reservation-dates">
+                  <div class="col">
+                    <input
+                      required
+                      class="form-control"
+                      type="text"
+                      name="start"
+                      placeholder="Arrival"
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      required
+                      class="form-control"
+                      type="text"
+                      name="end"
+                      placeholder="Departure"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-
-            <button type="submit" class="btn btn-primary">Search Availability</button>
+            <hr />
+            <button type="submit" class="btn btn-primary">
+              Search Availability
+            </button>
           </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p id="myParagraph">This is some text.</p>
+          <p>
+            <button class="btn btn-outline-secondary" id="colorButton">
+              Click me
+            </button>
+          </p>
         </div>
       </div>
     </div>
@@ -142,5 +165,81 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
+    <script src="https://unpkg.com/notie"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      let attention = Prompt();
+      (() => {
+        'use strict';
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation');
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            'submit',
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add('was-validated');
+            },
+            false
+          );
+        });
+      })();
+      document
+        .getElementById('colorButton')
+        .addEventListener('click', function () {
+          // notify('This is my message', 'warning');
+          // notifyModal(
+          //   'Error!',
+          //   '<em>hello, world</em>',
+          //   'success',
+          //   'My Text for the button'
+          // );
+          attention.toast();
+        });
+
+      const elem = document.getElementById('reservation-dates');
+      const rangepicker = new DateRangePicker(elem, {
+        format: 'yyyy-mm-dd',
+      });
+
+      function notify(msg, msgType) {
+        notie.alert({
+          type: msgType,
+          text: msg,
+        });
+      }
+
+      function notifyModal(title, html, icon, confirmButtonText) {
+        Swal.fire({
+          title,
+          html,
+          icon,
+          confirmButtonText,
+        });
+      }
+
+      function Prompt() {
+        let toast = function () {
+          console.log('clicked button and got toast');
+        };
+        let success = function () {
+          console.log('clicked button and got success');
+        };
+
+        return {
+          toast,
+          success,
+        };
+      }
+    </script>
   </body>
 </html>
