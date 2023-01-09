@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/kurthakim/bookings/pkg/config"
-	"github.com/kurthakim/bookings/pkg/handlers"
-	"github.com/kurthakim/bookings/pkg/render"
+	"github.com/kurthakim/bookings/internal/config"
+	"github.com/kurthakim/bookings/internal/handlers"
+	"github.com/kurthakim/bookings/internal/render"
 )
 
 var portNumber = ":8080"
