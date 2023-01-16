@@ -1,2 +1,2 @@
-go build -o bookings.exe cmd/web/.
+go build -o bookings.exe ./cmd/web/
 bookings.exe

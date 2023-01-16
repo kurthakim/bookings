@@ -10,7 +10,7 @@ services:
       mode: replicated
       replicas: 1
     environment:
-      POSTGRES_DB: bookings
+      POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     volumes:
