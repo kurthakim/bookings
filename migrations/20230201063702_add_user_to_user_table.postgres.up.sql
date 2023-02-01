@@ -1,0 +1,1 @@
+insert into "public"."users" ("access_level", "created_at", "email", "first_name",  "last_name", "password", "updated_at") values (3, '2020-01-01 00:00:00', 'admin@admin.com', 'Trevor', 'Sawler', '$2a$12$NdXSItnIrdydUK4eNUKoP.AamnyBRQebTUcRi11Tp0e2pMo7iTL.C', '2020-01-01 00:00:00')
